@@ -1,54 +1,104 @@
-# React + TypeScript + Vite
+# ProductCard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A minimal React + TypeScript project built with Vite, featuring a customizable `ProductCard` component using Material UI. The `ProductCard` displays product information such as title, origin country, price (with currency formatting), and an image.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- ⚡️ Fast development with Vite
+- 🛠️ Written in TypeScript
+- 🎨 Uses Material UI for modern UI components
+- 💱 Supports price formatting for multiple currencies (RUB, USD, EUR)
+- 🧩 Easily reusable and customizable `ProductCard` component
 
-## Expanding the ESLint configuration
+## Getting Started
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Prerequisites
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+- Node.js (v18+ recommended)
+- Yarn or npm
+
+### Installation
+
+```bash
+git clone <your-repo-url>
+cd ProductCard
+yarn install
+# or
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Development
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Start the development server:
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+```bash
+yarn dev
+# or
+npm run dev
 ```
+
+Open [http://localhost:5173](http://localhost:5173) to view the app.
+
+### Build
+
+To build for production:
+
+```bash
+yarn build
+# or
+npm run build
+```
+
+### Lint
+
+To run ESLint:
+
+```bash
+yarn lint
+# or
+npm run lint
+```
+
+## Usage
+
+The main feature of this project is the `ProductCard` component, which can be used as follows:
+
+```tsx
+import ProductCard from './Components/ProductCard/ProductCard';
+import pizza from '../public/pizza.png';
+
+<ProductCard
+  title="Margarita"
+  originCountry="Russia"
+  price={34900} // price in minor units (e.g., kopecks, cents)
+  image={pizza}
+/>
+```
+
+#### Props
+
+- `title` (string): Name of the product
+- `originCountry` (string): Country of origin
+- `price` (number): Price in minor units (e.g., cents, kopecks)
+- `currencyType` (optional, 'RUB' | 'USD' | 'EUR'): Currency for price formatting (default: 'RUB')
+- `image` (string): Image URL or import
+
+## File Structure
+
+```
+src/
+  Components/
+    ProductCard/
+      ProductCard.tsx
+      helpers/
+        getLocale.ts
+  App.tsx
+  main.tsx
+  ...
+public/
+  pizza.png
+```
+
+## License
+
+MIT
